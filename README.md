@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# EBAC Modulo 28 - Introdução ao React
+[![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=FabioFelipeSantos&repo=ebac-modulo-28-intro-react&bg_color=000&border_color=30A3DC&show_icons=true&icon_color=30A3DC&title_color=E94D5F&text_color=FFF)](https://github.com/FabioFelipeSantos/ebac-modulo-28-intro-react)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/FabioFelipeSantos/ebac-modulo-28-intro-react?style=plastic)
+![GitHub Created At](https://img.shields.io/github/created-at/FabioFelipeSantos/ebac-modulo-28-intro-react?style=plastic)
+![GitHub language count](https://img.shields.io/github/languages/count/FabioFelipeSantos/ebac-modulo-28-intro-react?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/FabioFelipeSantos/ebac-modulo-28-intro-react?style=plastic)
 
-Currently, two official plugins are available:
+Projeto de estudo (pratique) do módulo 28 da EBAC, Introdução ao React. Projeto de cálculo do IMC
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objetivos
 
-## Expanding the ESLint configuration
+- Crie um projeto utilizando ReactJS;
+- Este projeto será basicamente um formulário, contendo os campos:
+  - altura
+  - peso
+- A partir dessas informações calcule o IMC;
+- Retorne o IMC e a classificação na tabela;
+- Em um novo repositório armazene o código da tarefa;
+- Envie o link do repositório através da plataforma.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tecnologias
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- JavaScript ES6+
+- Typescript
+- ReactJS
+- TailwindCSS
+- Vite
+- NodeJS
+- WebStorm IDE (Text Editor)

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.bdr-b {
+		@apply border border-2 border-blue-600;
+	}
+
+	.bdr-r {
+		@apply border border-2 border-red-600;
+	}
+
+	.bdr-g {
+		@apply border border-2 border-green-600;
+	}
+
+	.no-spinner-button::-webkit-inner-spin-button {
+		display: none;
+	}
+}

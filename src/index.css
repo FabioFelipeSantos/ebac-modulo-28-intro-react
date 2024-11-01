@@ -14,8 +14,4 @@
 	.bdr-g {
 		@apply border border-2 border-green-600;
 	}
-
-	.no-spinner-button::-webkit-inner-spin-button {
-		display: none;
-	}
 }

@@ -7,9 +7,9 @@ export default {
 			width: {
 				"24/25": "96%",
 			},
-			minHeight: {
-				section: "calc(65vh - 32px)",
-			},
+			// minHeight: {
+			// 	section: "calc(65vh - 32px)",
+			// },
 			fontFamily: {
 				spectral: "Spectral, serif",
 			},

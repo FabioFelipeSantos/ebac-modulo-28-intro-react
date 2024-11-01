@@ -1,31 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
+	initialInputValue: string;
 	imcParameter: string;
 	labelForPointingThisInput: string;
-	sendingInputValue(value: number): void;
+	sendingInputValue(value: string): void;
 };
 
 export default function NumberInput({
+	initialInputValue,
 	imcParameter,
 	labelForPointingThisInput,
 	sendingInputValue,
 }: Props): React.ReactNode {
+	const [inputValue, setInputValue] = useState(initialInputValue);
+
 	function handleGettingInputValue(event: React.ChangeEvent) {
 		const inputElement = event.target as HTMLInputElement;
-		sendingInputValue(inputElement.value ? inputElement.valueAsNumber : 0);
+
+		setInputValue(inputElement.value);
+
+		if (inputElement.value !== "") {
+			sendingInputValue(inputElement.value);
+		}
 	}
 
 	return (
 		<>
 			<input
 				onChange={handleGettingInputValue}
-				className="w-3/4 px-4 py-3 text-lg text-center sm:text-xl text-zinc-600 sm:4/5 no-spinner-button"
-				type="number"
+				className="w-3/4 px-4 py-3 text-lg text-center sm:text-xl text-zinc-600 sm:4/5"
+				type="text"
+				value={inputValue}
 				name={imcParameter}
 				id={labelForPointingThisInput}
-				min="0"
-				placeholder={`${imcParameter === "height" ? "Exemplo: 170 ..." : "Exemplo: 85 ..."}`}
+				placeholder={inputValue === "" ? "Digite seu valor..." : ""}
 				required
 				step={0.001}
 			/>

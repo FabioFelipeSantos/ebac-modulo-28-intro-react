@@ -1,31 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header from "./components/Header.tsx";
-import DarkLight from "./components/utils/DarkLight.tsx";
+import DarkLight from "./components/DarkLight.tsx";
 import IMCForm from "./components/Form/IMCForm.tsx";
+import changingThemeModeOnHTML from "./utils/changingThemeModeOnHTML.ts";
+import gettingIMCFromLocalStorage from "./utils/gettingIMCFromLocalStorage.ts";
 
-function changingThemeModeOnHTML(): void {
-	document.documentElement.classList.toggle(
-		"dark",
-		localStorage.theme === "dark" ||
-			(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-	);
-}
+const initialIMCParameters: { height: string; weight: string } = gettingIMCFromLocalStorage();
 
 export default function App() {
+	const resultSectionRef = useRef<HTMLDivElement>(null);
 	const [colorMode, setColorMode] = useState("dark");
-	const [imcParameters, setIMCParameters] = useState({
-		height: 0,
-		weight: 0,
-	});
+	const [imcParameters, setIMCParameters] = useState(initialIMCParameters);
 
-	const IMCResult = imcParameters.weight / Math.pow(imcParameters.height / 100, 2);
-	console.log(IMCResult);
+	const IMCResult: number = Number(imcParameters.weight) / Math.pow(Number(imcParameters.height) / 100, 2);
 
 	useEffect(() => {
 		localStorage.theme = colorMode;
 		changingThemeModeOnHTML();
 	}, [colorMode]);
 
+	function handleScrollAfterSendTheValues() {
+		if (resultSectionRef.current) {
+			resultSectionRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}
 	return (
 		<div className="min-h-screen text-black dark:text-white bg-slate-200 dark:bg-black/90 font-spectral">
 			<header className="flex items-center justify-around h-[35vh] bg-lime-400 dark:bg-violet-900">
@@ -37,11 +35,25 @@ export default function App() {
 			</header>
 
 			<main>
-				<section className="flex justify-center mt-8 bg-orange-200 dark:bg-emerald-950 min-h-section bdr-r">
-					<IMCForm handleIMCValues={setIMCParameters} />
+				<section className="flex justify-center bg-orange-200 dark:bg-emerald-950 min-h-[65vh]">
+					<IMCForm
+						imcParameters={imcParameters}
+						handleIMCValues={setIMCParameters}
+						handleScrollToResult={handleScrollAfterSendTheValues}
+					/>
 				</section>
 
-				<section></section>
+				{!Number.isNaN(IMCResult) && (
+					<section
+						className="min-h-[100vh] flex justify-center bg-orange-200 dark:bg-emerald-950"
+						id="result">
+						<div
+							ref={resultSectionRef}
+							className="scroll-mt-12">
+							{IMCResult}
+						</div>
+					</section>
+				)}
 			</main>
 		</div>
 	);

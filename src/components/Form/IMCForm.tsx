@@ -1,27 +1,36 @@
 import { useState } from "react";
 import Label from "./Label";
 import NumberInput from "./NumberInput";
+import savingLastValuesInLocalStorage from "../../utils/savingLastValuesInLocalStorage";
 
 type Props = {
-	handleIMCValues(parameters: { height: number; weight: number }): void;
+	imcParameters: { height: string; weight: string };
+	handleIMCValues(parameters: { height: string; weight: string }): void;
+	handleScrollToResult(): void;
 };
 
-export default function IMCForm({ handleIMCValues }: Props) {
-	const [heightValue, setHeightValue] = useState(0);
-	const [weightValue, setWeightValue] = useState(0);
+export default function IMCForm({ imcParameters, handleIMCValues, handleScrollToResult }: Props) {
+	const [heightValue, setHeightValue] = useState(imcParameters.height);
+	const [weightValue, setWeightValue] = useState(imcParameters.weight);
 
 	function handleToCalculateButtonClick(event: React.MouseEvent) {
 		event.preventDefault();
-
-		handleIMCValues({
+		const imc = {
 			height: heightValue,
 			weight: weightValue,
-		});
+		};
+
+		handleIMCValues(imc);
+
+		setTimeout(() => {
+			handleScrollToResult();
+			savingLastValuesInLocalStorage(imc);
+		}, 180);
 	}
 
 	return (
 		<>
-			<form className="w-3/4 max-w-2xl p-5">
+			<form className="w-3/4 max-w-2xl p-5 my-8 ">
 				<div className="flex flex-col items-center h-full rounded-[52px] dark:bg-neutral-800/70 justify-evenly bg-neutral-500/20">
 					<div className="flex flex-col items-center w-full">
 						<Label
@@ -29,6 +38,7 @@ export default function IMCForm({ handleIMCValues }: Props) {
 							inputForElementForLabel="height"
 						/>
 						<NumberInput
+							initialInputValue={imcParameters.height}
 							sendingInputValue={setHeightValue}
 							imcParameter="height"
 							labelForPointingThisInput="height"
@@ -40,21 +50,17 @@ export default function IMCForm({ handleIMCValues }: Props) {
 							inputForElementForLabel="weight"
 						/>
 						<NumberInput
+							initialInputValue={imcParameters.weight}
 							sendingInputValue={setWeightValue}
 							imcParameter="weight"
 							labelForPointingThisInput="weight"
 						/>
 					</div>
-					<a
-						href="#result"
-						className="flex items-center justify-center w-full">
-						<button
-							onClick={handleToCalculateButtonClick}
-							className="w-4/5 px-8 py-4 text-2xl font-semibold rounded-full bg-lime-400 sm:w-1/2 dark:bg-violet-900 dark:hover:bg-violet-950 hover:bg-lime-500/80"
-							type="submit">
-							Calcular
-						</button>
-					</a>
+					<button
+						onClick={handleToCalculateButtonClick}
+						className="w-4/5 px-8 py-4 text-2xl font-semibold rounded-full bg-lime-400 sm:w-1/2 dark:bg-violet-900 dark:hover:bg-violet-950 hover:bg-lime-500/80">
+						Calcular
+					</button>
 				</div>
 			</form>
 		</>

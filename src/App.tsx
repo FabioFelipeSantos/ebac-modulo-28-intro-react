@@ -4,6 +4,7 @@ import DarkLight from "./components/DarkLight.tsx";
 import IMCForm from "./components/Form/IMCForm.tsx";
 import changingThemeModeOnHTML from "./utils/changingThemeModeOnHTML.ts";
 import gettingIMCFromLocalStorage from "./utils/gettingIMCFromLocalStorage.ts";
+import Result from "./components/Result/Result.tsx";
 
 const initialIMCParameters: { height: string; weight: string } = gettingIMCFromLocalStorage();
 
@@ -45,12 +46,15 @@ export default function App() {
 
 				{!Number.isNaN(IMCResult) && (
 					<section
-						className="min-h-[100vh] flex justify-center bg-orange-200 dark:bg-emerald-950"
+						className="min-h-[100vh] flex justify-center bg-orange-200 dark:bg-emerald-950 bdr-b"
 						id="result">
 						<div
 							ref={resultSectionRef}
-							className="scroll-mt-12">
-							{IMCResult}
+							className="max-w-5xl w-24/25 scroll-mt-12 bdr-r">
+							<Result
+								result={IMCResult}
+								imcParameters={imcParameters}
+							/>
 						</div>
 					</section>
 				)}

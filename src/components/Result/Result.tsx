@@ -92,31 +92,31 @@ export default function Result({ result, imcParameters }: Props) {
 
 	return (
 		<div className="flex flex-col items-center justify-center mt-4">
-			<h2 className="text-2xl italic font-bold underline">Seu Resultado!</h2>
+			<h2 className="text-2xl sm:text-3xl italic font-bold underline">Seu Resultado!</h2>
 
 			<div className="flex items-center justify-center w-40 h-20 mt-8 rounded-3xl bg-lime-400/80 dark:bg-violet-900/80">
-				<h3 className="text-3xl font-semibold">{result.toFixed(2)}</h3>
+				<h3 className="text-3xl sm:text-4xl font-semibold">{result.toFixed(2)}</h3>
 			</div>
 
 			<h2
-				className={`${imcResult.color} my-12 text-2xl font-extrabold w-11/12 text-center py-8 px-6 max-w-xl rounded-2xl`}>
+				className={`${imcResult.color} my-12 text-2xl sm:text-3xl font-extrabold w-11/12 text-center py-8 px-6 max-w-xl rounded-2xl`}>
 				{imcResult.description}
 			</h2>
 
-			<div className="flex flex-col items-center justify-center w-5/6 text-xl text-center mb-11 ">
+			<div className="flex flex-col items-center justify-center w-5/6 text-xl sm:text-2xl text-center mb-11 p-2 rounded-xl bg-red-600/5 dark:bg-red-600/10">
 				{messageForEachPossibleIMCResult}
 			</div>
 
-			<p className="mb-4 text-lg text-center">
+			<p className="mb-4 text-lg sm:text-xl text-center">
 				Consulte os valores de referência do IMC abaixo. Para mais informações, não deixe de consultar
 				seu médico!
 			</p>
 
-			<div className="w-5/6">
+			<div className="w-5/6 mb-6">
 				{imcTable.map((item, index) => (
 					<div
 						key={item.imc}
-						className={`flex text-lg justify-center items-center w-full ${item.color} h-10`}>
+						className={`flex text-md sm:text-lg justify-center items-center w-full ${item.color} h-12`}>
 						{index === 0 ? (
 							<div className="flex items-center justify-center w-24 gap-2">
 								<span className=""></span>
@@ -128,7 +128,7 @@ export default function Result({ result, imcParameters }: Props) {
 							</div>
 						)}
 
-						<span className="text-center w-60">
+						<span className="text-center w-64">
 							<p className="font">{item.description}</p>
 						</span>
 

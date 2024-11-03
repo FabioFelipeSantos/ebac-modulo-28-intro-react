@@ -14,8 +14,6 @@ export default function NumberInput({
 	sendingInputValue,
 }: Props): React.ReactNode {
 	const [inputValue, setInputValue] = useState(initialInputValue);
-	const [a, b] = useState("");
-	//const [isValid, setIsValid] = 
 
 	function handleGettingInputValue(event: React.ChangeEvent) {
 		const inputElement = event.target as HTMLInputElement & string;

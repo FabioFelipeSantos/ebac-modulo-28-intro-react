@@ -1,6 +1,6 @@
 type Table = { imc: number; description: string; color: string }[];
 
-export const imcTable: Table = [
+const imcTable: Table = [
 	{
 		imc: 15,
 		description: "Extremamente abaixo do peso",
@@ -42,3 +42,5 @@ export const imcTable: Table = [
 		color: "bg-red-700/80",
 	},
 ];
+
+export default imcTable;

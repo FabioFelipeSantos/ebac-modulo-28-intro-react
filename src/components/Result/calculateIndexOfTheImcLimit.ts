@@ -1,20 +1,20 @@
-import { imcTable } from "./imcTable";
+import imcTable from "./imcTable";
 
 export default function calculateIndexOfTheImcLimit(resultImc: number): number {
-    let indexOfLimitIMC: number = 0;
+	let indexOfLimitIMC: number = 0;
 
-    for (let i = 0; i < imcTable.length; i++) {
-        if (imcTable[i].imc < Math.ceil(resultImc)) {
-            if (i !== imcTable.length - 1) {
-                continue;
-            } else {
-                indexOfLimitIMC = i;
-            }
-        } else {
-            indexOfLimitIMC = i;
-            break;
-        }
-    }
+	for (let i = 0; i < imcTable.length; i++) {
+		if (imcTable[i].imc < Math.ceil(resultImc)) {
+			if (i !== imcTable.length - 1) {
+				continue;
+			} else {
+				indexOfLimitIMC = i;
+			}
+		} else {
+			indexOfLimitIMC = i;
+			break;
+		}
+	}
 
-    return indexOfLimitIMC;
+	return indexOfLimitIMC;
 }

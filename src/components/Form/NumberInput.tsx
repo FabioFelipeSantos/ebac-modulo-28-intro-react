@@ -14,14 +14,21 @@ export default function NumberInput({
 	sendingInputValue,
 }: Props): React.ReactNode {
 	const [inputValue, setInputValue] = useState(initialInputValue);
+	const [a, b] = useState("");
+	//const [isValid, setIsValid] = 
 
 	function handleGettingInputValue(event: React.ChangeEvent) {
-		const inputElement = event.target as HTMLInputElement;
+		const inputElement = event.target as HTMLInputElement & string;
+		let inputChangedValue: string = inputElement.value;
 
-		setInputValue(inputElement.value);
+		if (inputElement.value.endsWith(",")) {
+			inputChangedValue = inputElement.value.replace(",", ".");
+		}
 
-		if (inputElement.value !== "") {
-			sendingInputValue(inputElement.value);
+		setInputValue(inputChangedValue);
+
+		if (inputChangedValue !== "") {
+			sendingInputValue(inputChangedValue);
 		}
 	}
 
@@ -36,8 +43,7 @@ export default function NumberInput({
 				id={labelForPointingThisInput}
 				placeholder={inputValue === "" ? "Digite seu valor..." : ""}
 				required
-				step={0.001}
-			/>
+				/>
 		</>
 	);
 }
